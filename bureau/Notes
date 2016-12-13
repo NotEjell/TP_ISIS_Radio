@@ -1,0 +1,42 @@
+Notions :
+    Acte
+        ID
+        UF
+        Patient
+        Matériels ??
+        Date
+        Code CCAM
+        Images
+
+    UF
+        ID
+        Libellé
+
+    Patient
+        ID
+        Actes
+
+    CCAM
+        Code
+        Libellé
+        Tarif
+
+    Image
+        ID
+        Acte ??
+        Path
+
+    Matériel
+        ID
+        Modalités ??
+
+Fonctions à faire :
+    Créer un Acte
+    Créer une modalité d'imagerie
+    Rechercher une admission par IEP
+    Afficher les actes de radiologie d'une admission
+    
+    Ajouter une image à un acte
+    Consulter les images d'un patient
+
+    Uploader une image sur un acte
