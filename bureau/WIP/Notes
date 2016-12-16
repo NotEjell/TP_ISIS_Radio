@@ -5,11 +5,9 @@ Notions :
         Patient
         Actes
         
-
     Acte
         ID
         UF
-        Patient
         Mat�riels ??
         Date
         Code CCAM
@@ -35,6 +33,12 @@ Notions :
     Mat�riel
         ID
         Modalit�s ??
+
+Fichiers :
+    ApplicationConfig
+    DataBaseUtils OK
+    RestServices
+    Services
 
 Fonctions � faire :
     Cr�er un Acte

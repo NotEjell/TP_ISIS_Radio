@@ -5,6 +5,7 @@
  */
 package Radio;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -24,16 +25,25 @@ public class Services {
         this.em = fact.createEntityManager();
     }
     
-    public void creerActe(Acte myActe) {
+    public Acte creerActe(Acte myActe) {
 	em.getTransaction( ).begin( );
         em.persist(myActe);
         em.getTransaction().commit();
+        return myActe;
     }
     
-    public void creerModalite(Modalite myModalite) {
+    public Modalite creerModalite(Modalite myModalite) {
 	em.getTransaction( ).begin( );
         em.persist(myModalite);
         em.getTransaction().commit();
+        return myModalite;
+    }
+    
+    public Image creerImage(Image myImage) {
+	em.getTransaction( ).begin( );
+        em.persist(myImage);
+        em.getTransaction().commit();
+        return myImage;
     }
     
     public Admission getAdmissionById(int id) {
@@ -43,4 +53,34 @@ public class Services {
         return myAdmission;
     }
     
+    public List<Acte> getActesByIEP(int iep) {
+       
+	Admission myAdmission = em.find( Admission.class, iep );
+      
+        return myAdmission.getMyActes();
+    }
+    
+    public List<Image> getImagesByIPP(int ipp) {
+
+        List<Acte> myActes = new ArrayList<>();
+        List<Image> myImages = new ArrayList<>();
+        
+	Patient myPatient = em.find( Patient.class, ipp );
+        
+        TypedQuery<Admission> query = em.createQuery("SELECT a FROM Admission a Where myPatient = :patient", Admission.class).setParameter("patient", myPatient);
+        
+        List<Admission> myAdmissions = query.getResultList();       
+        
+        myAdmissions.forEach(admission -> admission.getMyActes().forEach(acte -> myActes.add(acte)));
+        
+        myActes.forEach(acte -> acte.getMyImages().forEach(image -> myImages.add(image)));
+        return myImages;
+    }
+    
+    public void ajouterImageActe(Acte myActe, String chemin){
+        Image myImage = new Image();
+        myImage.setPath(chemin);
+        
+        myActe.getMyImages().add(creerImage(myImage));
+    }
 }

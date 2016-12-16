@@ -33,9 +33,6 @@ public class Acte implements Serializable {
     private UF myUF;
         
     @Column
-    private Patient myPatient;
-    
-    @Column
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     List<Modalite> myMateriels;
     
@@ -47,7 +44,7 @@ public class Acte implements Serializable {
     
     @Column
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    List<Image> myImage;
+    List<Image> myImages;
 
     public int getId() {
         return id;
@@ -63,14 +60,6 @@ public class Acte implements Serializable {
 
     public void setMyUF(UF myUF) {
         this.myUF = myUF;
-    }
-
-    public Patient getMyPatient() {
-        return myPatient;
-    }
-
-    public void setMyPatient(Patient myPatient) {
-        this.myPatient = myPatient;
     }
 
     public List<Modalite> getMyMateriels() {
@@ -97,14 +86,18 @@ public class Acte implements Serializable {
         this.myCCAM = MyCCAM;
     }
 
-    public List<Image> getMyImage() {
-        return myImage;
+    public List<Image> getMyImages() {
+        return myImages;
     }
 
-    public void setMyImage(List<Image> myImage) {
-        this.myImage = myImage;
+    public void setMyImages(List<Image> myImages) {
+        this.myImages = myImages;
     }
 
+    public void addImage(Image image){
+        this.myImages.add(image);
+    }
+    
     @Override
     public String toString(){
         return this.id + " - " + this.myCCAM.getLibelle();
