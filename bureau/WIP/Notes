@@ -1,0 +1,48 @@
+Notions :
+
+    Admission
+        IEP
+        Patient
+        Actes
+        
+
+    Acte
+        ID
+        UF
+        Patient
+        Mat�riels ??
+        Date
+        Code CCAM
+        Images
+
+    UF
+        ID
+        Libell�
+
+    Patient
+        IPP
+
+    CCAM
+        Code
+        Libell�
+        Tarif
+
+    Image
+        ID
+        Acte ??
+        Path
+
+    Mat�riel
+        ID
+        Modalit�s ??
+
+Fonctions � faire :
+    Cr�er un Acte
+    Cr�er une modalit� d'imagerie
+    Rechercher une admission par IEP
+    Afficher les actes de radiologie d'une admission
+    
+    Ajouter une image � un acte
+    Consulter les images d'un patient
+
+    Uploader une image sur un acte
