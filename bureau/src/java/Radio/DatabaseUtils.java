@@ -16,7 +16,7 @@ public class DatabaseUtils {
     private static EntityManagerFactory fact = null;
 
     static public EntityManagerFactory fact() {
-         if (fact == null) fact = Persistence.createEntityManagerFactory("bureauPU");
+         if (fact == null) fact = Persistence.createEntityManagerFactory("radioPU");
          return fact; 
    }
 }

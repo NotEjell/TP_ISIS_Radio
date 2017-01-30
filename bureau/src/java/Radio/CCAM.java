@@ -5,14 +5,17 @@
  */
 package Radio;
 
+import java.io.Serializable;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
  *
  * @author Romain Fouchier
  */
-public class CCAM {
+@Entity
+public class CCAM implements Serializable {
     @Id
     private String id;
     

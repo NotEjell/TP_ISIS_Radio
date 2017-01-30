@@ -83,4 +83,46 @@ public class Services {
         
         myActe.getMyImages().add(creerImage(myImage));
     }
+    
+        public void deleteAllImages() {
+      
+        em.getTransaction( ).begin( );
+        em.createQuery("DELETE FROM Image").executeUpdate();
+        em.getTransaction().commit();     
+    }
+        
+        public void deleteAllActes() {
+      
+        em.getTransaction( ).begin( );
+        em.createQuery("DELETE FROM Acte").executeUpdate();
+        em.getTransaction().commit();
+    }
+        
+        public void deleteAllAdmission() {
+      
+        em.getTransaction( ).begin( );
+        em.createQuery("DELETE FROM Admission").executeUpdate();
+        em.getTransaction().commit();
+    }
+        
+        public void deleteAllModalite() {
+      
+        em.getTransaction( ).begin( );
+        em.createQuery("DELETE FROM Modalite").executeUpdate();
+        em.getTransaction().commit();
+    }
+        
+        public void deleteAllPatient() {
+      
+        em.getTransaction( ).begin( );
+        em.createQuery("DELETE FROM Patient").executeUpdate();
+        em.getTransaction().commit();
+    }
+        
+        public void deleteAllUF() {
+      
+        em.getTransaction( ).begin( );
+        em.createQuery("DELETE FROM UF").executeUpdate();
+        em.getTransaction().commit();
+    }
 }
