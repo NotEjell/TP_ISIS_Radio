@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<a href="#/home"><img src="images/Home.png" alt="" width="30" height="25" /></a><br />
+<table>
+    <tr>
+        <td>IEP :</td><td>{{ctrl.admission.iep}}</td>
+    </tr>
+    <tr>
+        <td>IPP :</td><td>{{ctrl.admission.myPatient.ipp}}</td>
+    </tr>
+    <tr>
+        <td>Nom :</td><td>{{ctrl.admission.myPatient.nom}}</td>
+    </tr>
+</table>
+<br />
+<table>
+    <tr>
+        <th>ID</th><th>CCAM</th><th>Date</th>
+    </tr>
+    <tr ng-repeat="act in ctrl.admission.myActes">
+        <td>{{act.id}}</td><td>{{act.myCCAM.id}}</td><td>{{act.myDate}}</td>   
+    </tr>
+</table>
+<br />
+<p>Creer Acte</p><a href="#/newActe"><img src="images/Home.png" alt="" width="30" height="25" /></a>

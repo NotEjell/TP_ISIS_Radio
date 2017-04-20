@@ -23,19 +23,47 @@ import javax.persistence.OneToMany;
 @Entity
 public class Patient implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private int ipp;
+    
+    @Column
+    private String nom;
 
-    public int getId() {
-        return id;
+    public Patient(int myIpp, String myNom){
+        this.setIpp(myIpp);
+        this.setNom(myNom);
+    }
+    
+    public Patient(){}
+    
+    /**
+     * Get the value of nom
+     *
+     * @return the value of nom
+     */
+    public String getNom() {
+        return nom;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    /**
+     * Set the value of nom
+     *
+     * @param nom new value of nom
+     */
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+
+    public int getIpp() {
+        return ipp;
+    }
+
+    public void setIpp(int ipp) {
+        this.ipp = ipp;
     }
     
     @Override
     public String toString(){
-        return "" + this.id;
+        return "" + this.ipp;
     }
 }

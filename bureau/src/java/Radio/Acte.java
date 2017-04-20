@@ -6,7 +6,8 @@
 package Radio;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -15,6 +16,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -29,23 +31,31 @@ public class Acte implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     
-    @Column
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private UF myUF;
         
     @Column
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     List<Modalite> myMateriels;
     
     @Column
     private Date myDate;
     
-    @Column
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private CCAM myCCAM;
     
     @Column
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     List<Image> myImages;
+    
+    @Column
+    private int isSent = 0;
 
+    public Acte(){
+        this.myMateriels = new ArrayList();
+        this.myImages = new ArrayList();
+    }
+    
     public int getId() {
         return id;
     }

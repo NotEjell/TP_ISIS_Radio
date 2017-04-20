@@ -1,5 +1,40 @@
-
+var admission;
 angular.module('monApp')
+
+        .controller('AdmissionController', ['$routeParams', 'Admission',
+            function ($routeParams, Admission) {
+                admission = Admission.get({id: $routeParams.iep});
+                this.admission = admission;
+                console.log(admission);
+//                this.delete = function (adm) {
+//                    // appel DELETE asynchrone au service web sur /crayons/{id}
+//                    //cr.$delete();
+//                    Crayons.delete(cr);
+//                    // remet à jour le tableau des crayons en suprimant l'élément effacé
+//                    this.crayons.splice(this.crayons.indexOf(cr), 1);
+//                };
+            }
+        ])
+
+        .controller('NewActeController', ['$scope', '$http', 'CCAM',
+            function ($scope, $http, CCAM) {
+                this.ccam = CCAM.query();
+                this.acte = new Acte();
+                this.update = function() {
+                    this.acte = { id: $scope.acte.CCAM.id, libelle: '', tarif: 0}
+                    admission.myActes.push(this.acte);
+                    $http.post('127.0.0.1:8080/bureau/webresources/radio/admission',admission)};
+
+                //this.home = Home.query();
+//                this.delete = function (adm) {
+//                    // appel DELETE asynchrone au service web sur /crayons/{id}
+//                    //cr.$delete();
+//                    Crayons.delete(cr);
+//                    // remet à jour le tableau des crayons en suprimant l'élément effacé
+//                    this.crayons.splice(this.crayons.indexOf(cr), 1);
+//                };
+            }
+        ])
 
         .controller('CrayonsController', ['Crayons',
             function (Crayons) {

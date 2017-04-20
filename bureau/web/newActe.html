@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+
+
+<form novalidate class="simple-form">
+    <h3> Définition d'un nouvel acte</h3>
+   
+    CCAM Code: <input type="text" ng-model="ctrl.acte.myCCAM.code" /><br />
+    <input type="submit" ng-click="ctrl.update()" value="Save" />
+    
+    <div ng-show="ctrl.acte.id">
+        Création d'un nouvel acte d'identifiant {{ ctrl.acte.id }} effectuée.
+    </div>
+    
+    <br/>
+    
+    <a href="#/">Retour</a>
+</form>

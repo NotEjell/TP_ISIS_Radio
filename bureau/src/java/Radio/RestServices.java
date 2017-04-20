@@ -20,7 +20,7 @@ import javax.ws.rs.core.UriInfo;
  *
  * @author Romain Fouchier
  */
-@Path("generic")
+@Path("radio")
 public class RestServices {
     @Context
     private UriInfo context;
@@ -28,14 +28,14 @@ public class RestServices {
     Radio.Services serv;
 
     public RestServices() {
-        serv = new Radio.Services(bureau.DatabaseUtils.fact());
-    }
+        serv = new Radio.Services(Radio.DatabaseUtils.fact());
+    }    
     
     @GET
     @Path("admission/{iep}")
     @Produces("application/json")
     public Admission getAdmissionById(@PathParam("iep") int iep) {
-        return serv.getAdmissionById(iep);
+        return serv.getAdmissionByIep(iep);
     }
     
     @GET
@@ -52,20 +52,41 @@ public class RestServices {
         return serv.getImagesByIPP(ipp);
     }
     
-    @POST
-    @Path("Acte")
+    @GET
+    @Path("ccam")
+    @Produces("application/json")
+    public List<CCAM> getCCAM() {
+        return serv.getAllCCAM();
+    }
+    
+    /*@POST
+    @Path("acte")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces("application/json")
     public Acte creerActe(Acte a) {
+        Admission myAdmission = serv.getAdmissionByIep(000);
+        myAdmission.getMyActes().add(a);
         return serv.creerActe(a);
-    }
+        //envoyer acte à la factu
+    }*/
+    
+    
     
     @POST
-    @Path("Modalite")
+    @Path("modalite")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces("application/json")
     public Modalite creerModalite(Modalite m) {
         return serv.creerModalite(m);
     }
     
+    //Chargement de ressources externes
+    //Création d'une Admission
+    @POST
+    @Path("admission")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces("application/json")
+    public Admission creerAdmission(Admission a) {
+        return serv.creerAdmission(a);
+    }
 }

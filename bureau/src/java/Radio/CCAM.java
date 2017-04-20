@@ -8,16 +8,24 @@ package Radio;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author Romain Fouchier
  */
 @Entity
+@XmlRootElement
 public class CCAM implements Serializable {
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
+    
+    @Column
+    private String code;
     
     @Column
     private String libelle;
@@ -25,13 +33,32 @@ public class CCAM implements Serializable {
     @Column
     private int tarif;
 
-    public String getId() {
+    public CCAM(String code, String libelle, int tarif){
+        this.code = code;
+        this.libelle = libelle;
+        this.tarif = tarif;
+    }
+    
+    public CCAM(){
+        
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+   
 
     public String getLibelle() {
         return libelle;

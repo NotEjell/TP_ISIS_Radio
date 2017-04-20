@@ -6,6 +6,7 @@
 package Radio;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -14,24 +15,40 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author Romain Fouchier
  */
 @Entity
+@XmlRootElement
 public class Admission implements Serializable {
-    @Id
+    /*@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int iep;   
+    private int id;*/
     
-    @Column
+    @Id
+    private int iep;
+    
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Patient myPatient;
 
     @Column
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Acte> myActes;
+    
+    public Admission(int iep, Patient myPatient){
+        this.iep = iep;
+        this.myPatient = myPatient;
+        this.myActes = new ArrayList();
+    }
+    
+    public Admission(){
+        
+    }
     
     public int getIep() {
         return iep;

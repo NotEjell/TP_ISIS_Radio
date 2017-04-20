@@ -8,30 +8,22 @@ angular.module('monApp', ['ngRoute', 'ngResource']);
 
 angular.module('monApp').config(['$routeProvider', function routeConfig($routeProvider) {
         $routeProvider
-                .when('/crayons', {
-                    controller: "CrayonsController as ctrl",
-                    templateUrl: 'listeCrayon.html'
+                .when('/admissions', {
+                    controller: "AdmissionsController as ctrl",
+                    templateUrl: 'listeAdmissions.html'
                 })
-                .when('/crayon/edit/:id', {
-                    controller: "CrayonEditController as ctrl",
-                    templateUrl: 'editCrayon.html'
+                .when('/admission/:iep', {
+                    controller: "AdmissionController as ctrl",
+                    templateUrl: 'admission.html'
                 })
-                .when('/crayon/new', {
-                    controller: "CrayonNewController as ctrl",
-                    templateUrl: 'newCrayon.html'
+                .when('/home', {
+                    controller: "HomeController as ctrl",
+                    templateUrl: 'home.html'
                 })
-                .when('/boites', {
-                    controller: "BoitesController as ctrl",
-                    templateUrl: 'listeBoites.html'
+                .when('/newActe', {
+                    controller: "NewActeController as ctrl",
+                    templateUrl: 'newActe.html'
                 })
-                .when('/boite/edit/:id', {
-                    controller: "BoiteEditController as ctrl",
-                    templateUrl: 'editBoite.html'
-                })
-                .when('/boite/new', {
-                    controller: "BoiteNewController as ctrl",
-                    templateUrl: 'newBoite.html'
-                })
-                .otherwise({redirectTo: '/crayons'});
+                .otherwise({redirectTo: '/home'});
     }]);
 
